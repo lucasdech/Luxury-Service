@@ -111,8 +111,8 @@
                                 <ul>
                                     <li><a href="/">Home</a></li>
                                     <li><a href="/templates/jobs/index.html">Jobs Offers</a></li>
-                                    <li><a href="/templates/compagny.html">About Us</a></li>
-                                    <li><a href="/templates/contact.html">Contact</a></li>
+                                    <li><a href="{{ path('app_home_aboutus') }}">About Us</a></li>
+                                    <li><a href="{{ path('app_home_contact') }}">Contact</a></li>
                                     <li>-</li>
                                     <li><a href="/templates/auth/profile.html">Profile</a></li>
                                     <li><a href="/logout.html">Logout</a></li>
@@ -123,12 +123,12 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="menuzord-menu pull-right light" role="navigation">
                             <li class=" dropdown">
-                                <a target="_self" href="/templates/auth/login.html">
+                                <a target="_self" href="{{ path('app_login') }}">
                                     <span>Login</span>
                                 </a>
                             </li>
                             <li class=" dropdown">
-                                <a target="_self" href="/templates/auth/register.html"
+                                <a target="_self" href="{{ path('app_register') }}"
                                     class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
                                     <span>Sign Up</span>
                                 </a>
@@ -149,13 +149,13 @@
                                 </a>
                             </li>
                             <li class=" dropdown">
-                                <a target="_self" href="/templates/compagny.html">
+                                <a target="_self" href="{{ path('app_home_aboutus') }}">
                                     <i class=""></i>
                                     <span>About us</span>
                                 </a>
                             </li>
                             <li class=" dropdown">
-                                <a target="_self" href="/templates/contact.html">
+                                <a target="_self" href="{{ path('app_home_contact') }}">
                                     <i class=""></i>
                                     <span>Contact</span>
                                 </a>

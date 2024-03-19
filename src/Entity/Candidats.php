@@ -85,6 +85,10 @@ class Candidats
     #[ORM\ManyToOne(inversedBy: 'candidats')]
     private ?Experience $id_experience = null;
 
+    #[ORM\OneToOne(inversedBy: 'candidats', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user_id = null;
+
     public function __construct()
     {
         $this->jobToCandidats = new ArrayCollection();
@@ -388,4 +392,18 @@ class Candidats
 
         return $this;
     }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(User $user_id): static
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+
 }
