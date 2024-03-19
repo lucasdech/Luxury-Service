@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidats index{% endblock %}
+
+{% block body %}
+    <h1>Candidats index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Gender</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Adress</th>
+                <th>Country</th>
+                <th>Nationality</th>
+                <th>Is_passPort</th>
+                <th>PassPort_files</th>
+                <th>Cv</th>
+                <th>Profil_picture</th>
+                <th>Current_location</th>
+                <th>Date_of_birth</th>
+                <th>Email</th>
+                <th>PassWord</th>
+                <th>Aviability</th>
+                <th>Description</th>
+                <th>Note</th>
+                <th>Date_created</th>
+                <th>Date_updated</th>
+                <th>Date_delete</th>
+                <th>File</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat in candidats %}
+            <tr>
+                <td>{{ candidat.id }}</td>
+                <td>{{ candidat.Gender }}</td>
+                <td>{{ candidat.firstName }}</td>
+                <td>{{ candidat.lastName }}</td>
+                <td>{{ candidat.adress }}</td>
+                <td>{{ candidat.country }}</td>
+                <td>{{ candidat.nationality }}</td>
+                <td>{{ candidat.isPassPort ? 'Yes' : 'No' }}</td>
+                <td>{{ candidat.passPortFiles }}</td>
+                <td>{{ candidat.cv }}</td>
+                <td>{{ candidat.profilPicture }}</td>
+                <td>{{ candidat.currentLocation }}</td>
+                <td>{{ candidat.dateOfBirth }}</td>
+                <td>{{ candidat.email }}</td>
+                <td>{{ candidat.passWord }}</td>
+                <td>{{ candidat.aviability ? candidat.aviability|date('Y-m-d') : '' }}</td>
+                <td>{{ candidat.description }}</td>
+                <td>{{ candidat.note }}</td>
+                <td>{{ candidat.dateCreated ? candidat.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ candidat.dateUpdated ? candidat.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ candidat.dateDelete ? candidat.dateDelete|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ candidat.file }}</td>
+                <td>
+                    <a href="{{ path('app_candidats_show', {'id': candidat.id}) }}">show</a>
+                    <a href="{{ path('app_candidats_edit', {'id': candidat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="23">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_candidats_new') }}">Create new</a>
+{% endblock %}
