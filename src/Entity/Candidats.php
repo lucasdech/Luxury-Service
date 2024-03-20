@@ -46,7 +46,7 @@ class Candidats
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profil_picture = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $current_location = null;
 
     #[ORM\Column(length: 255)]
@@ -54,9 +54,6 @@ class Candidats
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $passWord = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $aviability = null;
@@ -251,18 +248,6 @@ class Candidats
     public function setEmail(?string $email): static
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassWord(): ?string
-    {
-        return $this->passWord;
-    }
-
-    public function setPassWord(string $passWord): static
-    {
-        $this->passWord = $passWord;
 
         return $this;
     }

@@ -20,7 +20,6 @@ label: 'Password'
 {{ form_end(registrationForm) }} #}
 
 
-
 <div class="base">
 
     <!-- Page -->
@@ -66,8 +65,8 @@ label: 'Password'
                                 <span class="help-block">Type your email address.</span>
                             </div>
 
-                            {{ dump(app.user.id) }}
-                            
+                            {# {{ dump(app.user.id) }} #}
+
                             <div class="input-field">
 
                                 {{ form_row(registrationForm.plainPassword, {

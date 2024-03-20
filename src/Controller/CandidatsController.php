@@ -26,6 +26,9 @@ class CandidatsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $candidat = new Candidats();
+        $user = $this->getUser();
+        $candidat->setUserId($user);
+
         $form = $this->createForm(CandidatsType::class, $candidat);
         $form->handleRequest($request);
 

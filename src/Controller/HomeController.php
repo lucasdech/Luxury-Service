@@ -12,11 +12,11 @@ class HomeController extends AbstractController
     public function index(): Response
     {
 
-        $user = $this->getUser();
+        // $user = $this->getUser();
         
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'user' => $user
+            // 'user' => $user
         ]);
     }
 

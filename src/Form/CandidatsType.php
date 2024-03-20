@@ -27,7 +27,6 @@ class CandidatsType extends AbstractType
             ->add('current_location')
             ->add('date_of_birth')
             ->add('email')
-            ->add('passWord')
             ->add('aviability', null, [
                 'widget' => 'single_text',
             ])

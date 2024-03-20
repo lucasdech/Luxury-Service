@@ -20,6 +20,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        $candidats = new Candidats;
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -36,10 +37,7 @@ class RegistrationController extends AbstractController
             // faire un nouveu user a se moment pour le mettre dans notre objet candidats
             // verifier que se soit bien dedans et mettre que l'id 
 
-           
-
-            $candidats = new Candidats;
-            $candidats->setUserId($user['id']);
+            // $candidats->setUserId($user['id']);
 
             $entityManager->persist($user);
             $entityManager->flush();
