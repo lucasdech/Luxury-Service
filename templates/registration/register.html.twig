@@ -66,6 +66,8 @@ label: 'Password'
                                 <span class="help-block">Type your email address.</span>
                             </div>
 
+                            {{ dump(app.user.id) }}
+                            
                             <div class="input-field">
 
                                 {{ form_row(registrationForm.plainPassword, {

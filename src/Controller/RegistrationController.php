@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidats;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppCustomAuthenticator;
@@ -34,6 +35,11 @@ class RegistrationController extends AbstractController
             // regarder comment on recuperer les info dans user abvec symphony
             // faire un nouveu user a se moment pour le mettre dans notre objet candidats
             // verifier que se soit bien dedans et mettre que l'id 
+
+           
+
+            $candidats = new Candidats;
+            $candidats->setUserId($user['id']);
 
             $entityManager->persist($user);
             $entityManager->flush();
