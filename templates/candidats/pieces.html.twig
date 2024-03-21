@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ 
+    {# <pre>
+        {{ dump(app.user.candidats.cv) }}
+        {{ dump(app.user.candidats.passPortfiles) }}
+        {{ dump(app.user.candidats.profilpicture) }}
+    </pre> #}
+
+    <div class="container d-flex m-5 justify-content-center">
+
+        <div style="margin-top: 15%;">
+            <h2>Profil Pictures</h2>
+            {% if (app.user.candidats.profilpicture) is defined %}
+                <img src="http://luxuryservices.dvl.to/uploads/ProfilPics/{{ app.user.candidats.profilpicture }}" alt="" height="500" width="500">
+            {% else %}
+                <p>No Profil Pictures uploaded</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <h2>passport</h2>
+            {% if (app.user.candidats.passPortfiles) is defined %}
+                <img src="http://luxuryservices.dvl.to/uploads/Passeport/{{ app.user.candidats.passPortfiles }}" alt="" height="500" width="500">
+            {% else %}
+                <p>No PassPort uploaded</p>
+            {% endif %}
+        </div>
+
+        <div  style="margin-bottom: 15%;"">
+            <h2>CV</h2>
+            {% if (app.user.candidats.passPortfiles) is defined %}
+                <embed src="http://luxuryservices.dvl.to/uploads/CV/{{ app.user.candidats.cv }}" type="" height="500" width="500">
+            {% else %}
+                <p>No CV uploaded</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+{% endblock %}

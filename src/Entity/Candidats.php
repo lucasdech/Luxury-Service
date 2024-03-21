@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\CandidatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\VarExporter\Internal\Values;
 
 #[ORM\Entity(repositoryClass: CandidatsRepository::class)]
 class Candidats
@@ -390,5 +392,20 @@ class Candidats
         return $this;
     }
 
+
+    public function __toString(): string
+    {
+        return $this->email;
+    }
+
+        // calcul du pourcentage de candidats 
+
+
+    // public function calculCompletion()
+    // {
+
+    
+
+    // }
 
 }
