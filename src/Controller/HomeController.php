@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
+use App\Repository\JobOfferRepository;
 
+
+use App\Entity\JobOffer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,8 +12,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(JobOfferRepository $jobOfferRepository): Response
     {
+        // $jobOffer = new JobOffer;
+       
+
 
         // dd($this->getUser());
 
@@ -18,6 +24,7 @@ class HomeController extends AbstractController
         
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'job_offer' =>  $jobOfferRepository->findAll(),
             // 'user' => $user
         ]);
     }
