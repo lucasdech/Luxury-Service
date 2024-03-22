@@ -34,7 +34,7 @@ class CandidatsType extends AbstractType
             ->add('is_passPort')
             
             ->add('passPort_files', FileType::class, [
-                'label' => 'Passeport (jpg File)',
+                'label' => false,
                 'mapped' => false,
                 'constraints' => [
                     new File([
@@ -46,7 +46,7 @@ class CandidatsType extends AbstractType
                 ]
             ])
             ->add('cv', FileType::class, [
-                'label' => 'CV (PDF File)',
+                'label' => false,
                 'mapped' => false,
                 'constraints' => [
                     new File([
@@ -59,7 +59,7 @@ class CandidatsType extends AbstractType
                 ]
             ])
             ->add('profil_picture', FileType::class, [
-                'label' => 'Profil Pic (jpg File)',
+                'label' => false,
                 'mapped' => false,
                 'constraints' => [
                     new File([

@@ -52,6 +52,10 @@ class JobOffer
     #[ORM\ManyToOne(inversedBy: 'jobOffer')]
     private ?JobType $id_JobType = null;
 
+    #[ORM\ManyToOne(inversedBy: 'jobOffers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
+
     public function __construct()
     {
         $this->jobToCandidats = new ArrayCollection();
@@ -228,6 +232,18 @@ class JobOffer
     {
         return $this->reference;
     }
+
+     public function getClient(): ?Client
+     {
+         return $this->client;
+     }
+
+     public function setClient(?Client $client): static
+     {
+         $this->client = $client;
+
+         return $this;
+     }
 
 }
 

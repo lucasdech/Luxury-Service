@@ -4,9 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Controller\ClientController;
 use App\Entity\Candidats;
+use App\Entity\Category;
 use App\Entity\Client;
+use App\Entity\Experience;
 use App\Entity\JobOffer;
 use App\Entity\JobToCandidat;
+use App\Entity\JobType;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -56,7 +59,7 @@ class DashboardController extends AbstractDashboardController
         // }
 
             }else {
-                
+
                 return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER); 
             }
 
@@ -77,5 +80,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Job Offer', 'fa-solid fa-briefcase', JobOffer::class);
         yield MenuItem::linkToCrud('Job To Candidat', 'fa-regular fa-handshake', JobToCandidat::class);
         yield MenuItem::linkToCrud('User', 'fa-regular fa-user', User::class);
+        yield MenuItem::linkToCrud('Category', 'fa-solid fa-list', Category::class);
+        yield MenuItem::linkToCrud('Experience', 'fa-regular fa-star', Experience::class);
+        yield MenuItem::linkToCrud('Job Type', 'fa-solid fa-recycle', JobType::class);
     }
 }
