@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JobToCandidat{% endblock %}
+
+{% block body %}
+    <h1>JobToCandidat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job_to_candidat.id }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ job_to_candidat.time ? job_to_candidat.time|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Is_approved</th>
+                <td>{{ job_to_candidat.isApproved ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_job_to_candidat_index') }}">back to list</a>
+
+    <a href="{{ path('app_job_to_candidat_edit', {'id': job_to_candidat.id}) }}">edit</a>
+
+    {{ include('job_to_candidat/_delete_form.html.twig') }}
+{% endblock %}

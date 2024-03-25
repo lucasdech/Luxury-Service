@@ -17,6 +17,17 @@ class JobOfferController extends AbstractController
     #[Route('/', name: 'app_job_offer_index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository): Response
     {
+
+        $user = $this->getUser();
+
+        $candidats_Id = $user->getCandidats()->getId();
+
+        dump($candidats_Id);
+
+        dump($jobOfferRepository->findAll());
+
+        // dd('salut');
+
         return $this->render('job_offer/index.html.twig', [
             'job_offers' => $jobOfferRepository->findAll(),
         ]);
@@ -46,7 +57,7 @@ class JobOfferController extends AbstractController
     public function show(JobOffer $jobOffer): Response
     {
         return $this->render('job_offer/show.html.twig', [
-            'job_offer' => $jobOffer,
+            'job' => $jobOffer,
         ]);
     }
 

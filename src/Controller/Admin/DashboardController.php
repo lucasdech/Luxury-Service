@@ -24,7 +24,6 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
 
-         dump($this->getUser()->getRoles());
 
     foreach ($this->getUser()->getRoles() as $key) {
         

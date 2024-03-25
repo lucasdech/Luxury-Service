@@ -13,15 +13,7 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function index(JobOfferRepository $jobOfferRepository): Response
-    {
-        // $jobOffer = new JobOffer;
-       
-
-
-        // dd($this->getUser());
-
-        // $user = $this->getUser();
-        
+    {        
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'job_offer' =>  $jobOfferRepository->findAll(),

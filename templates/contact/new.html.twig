@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
+
+
+
 
 
 <div class="base">
@@ -36,41 +38,38 @@
                         <p class="section-sub text-center">Whether your needs, desires or wishes are urgent or a little less, they will all be taken care of with the some efficiency by us.</p>
                     </div>
 
+                {{ form_start(form) }}
+
                     <div class="row">
                         <div id="contactForm" class="col-xs-12 col-sm-12 col-md-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input required="required" name="firstname" type="text">
-                                        <label for="firstname">First name</label>
+                                            {{ form_row(form.first_name) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input required="required" name="lastname" type="text">
-                                        <label for="lastname">Last name</label>
+                                            {{ form_row(form.last_name) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input required="required" name="email" type="email">
-                                        <label for="email">Email</label>
+                                            {{ form_row(form.email) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input required="required" name="phone" type="tel">
-                                        <label for="phone">Phone Number</label>
+                                            {{ form_row(form.phone_number) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="input-field">
-                                        <textarea class="materialize-textarea" required="required" name="message" cols="50" rows="10"></textarea>
-                                        <label for="message">Message</label>
+                                            {{ form_row(form.message) }}
                                     </div>
                                 </div>
                             </div>
@@ -84,6 +83,9 @@
                                 </div>
                             </div>
                         </div>
+
+                {{ form_end(form) }}
+
 
                         <div class="col-xs-12 col-sm-12 col-md-4 contact-info mt-40">
 
@@ -118,5 +120,5 @@
 
 </div>
 
-{% endblock %}
 
+{% endblock %}
