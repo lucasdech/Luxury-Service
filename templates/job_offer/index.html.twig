@@ -72,6 +72,7 @@
 
                                     <form action="{{ path('app_job_to_candidat_new') }}" method="post">
                                         <button type="submit" class="btn btn-md primary waves-effect waves-light">Apply</button>
+                                        <input type="hidden" name="jobOffer_ID" value="{{ job.id }}">
                                     </form>
                                     
                                     </div>
