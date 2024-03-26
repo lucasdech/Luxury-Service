@@ -20,13 +20,13 @@ class JobOfferController extends AbstractController
 
         $user = $this->getUser();
 
-        $candidats_Id = $user->getCandidats()->getId();
 
-        dump($candidats_Id);
+        if ($user) {
+            
+            $candidats_Id = $user->getCandidats()->getId();
+        }
 
-        dump($jobOfferRepository->findAll());
 
-        // dd('salut');
 
         return $this->render('job_offer/index.html.twig', [
             'job_offers' => $jobOfferRepository->findAll(),

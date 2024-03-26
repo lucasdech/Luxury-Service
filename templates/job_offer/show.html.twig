@@ -52,10 +52,21 @@
                                 <li><span> Location </span>{{ job.location }}</li>
                                 <li><span> Starting date </span>{{ job.closingdate|date("m/d/Y") }}</li>
                             </ul>
-                            <form action="{{ path('app_job_to_candidat_new') }}" method="post">
-                                        <button type="submit" class="btn btn-md primary waves-effect waves-light">Apply</button>
-                                        <input type="hidden" name="jobOffer_ID" value="{{ job.id }}">
-                            </form>
+
+                            {% if app.user %}
+                            
+
+                                {% if app.user.candidats.Completion == 100 %}
+                                            <form action="{{ path('app_job_to_candidat_new') }}" method="post">
+                                                <button type="submit" id="Apply" class="btn btn-md primary waves-effect waves-light">Apply</button>
+                                                <input type="hidden" name="jobOffer_ID" value="{{ job.id }}" >
+                                            </form>
+                                        {% else %}
+                                            <button type="submit" id="Apply" class="">Apply</button>
+                                {% endif %}
+
+                            {% endif %}
+
                             <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
                         </div>
                     </div>

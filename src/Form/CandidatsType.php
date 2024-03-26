@@ -36,6 +36,7 @@ class CandidatsType extends AbstractType
             ->add('passPort_files', FileType::class, [
                 'label' => false,
                 'mapped' => false,
+                'required'=>false,
                 'constraints' => [
                     new File([
                     'mimeTypes' => [
@@ -48,6 +49,7 @@ class CandidatsType extends AbstractType
             ->add('cv', FileType::class, [
                 'label' => false,
                 'mapped' => false,
+                'required'=>false,
                 'constraints' => [
                     new File([
                     'mimeTypes' => [
@@ -61,6 +63,7 @@ class CandidatsType extends AbstractType
             ->add('profil_picture', FileType::class, [
                 'label' => false,
                 'mapped' => false,
+                'required'=>false,
                 'constraints' => [
                     new File([
                     'mimeTypes' => [

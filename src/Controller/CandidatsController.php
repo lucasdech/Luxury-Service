@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use DateTimeImmutable;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints\File;
@@ -61,11 +62,18 @@ class CandidatsController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
+        // mise en place des dates pour le created art et update at 
+        date_default_timezone_set('UTC');
+        $date = new DateTimeImmutable();
+        $date->format('Y-m-d');
+        // fin des dates 
+
         if ($user->getCandidats()) {
 
             $candidat = $user->getCandidats();
             $email = $user->getEmail();
             $candidat->setEmail($email);
+            $candidat->setDateCreated($date);
 
         }else {
         
@@ -73,6 +81,7 @@ class CandidatsController extends AbstractController
             $user->setCandidats($candidats);
             $email = $user->getEmail();
             $candidats->setEmail($email);
+            $candidats->setDateUpdated($date);
         }
 
         $candidat = $user->getCandidats();
@@ -151,16 +160,75 @@ class CandidatsController extends AbstractController
                 $candidat->setProfilPicture($newFilename);
             }
 
-
             $entityManager->persist($candidat);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_candidats_edit', [], Response::HTTP_SEE_OTHER);
         }
 
+         // CALCUL DU POURCENTAGE DE COMPLETION (A REFACTORISER SI J'AI LE TEMPS DONC OUI !)
+
+            $pourcentageCompletion = 0;
+
+            if (!empty($candidat->getGender())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+
+            if (!empty($candidat->getFirstName())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+
+            if (!empty($candidat->getLastName())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+
+            if (!empty($candidat->getAdress())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getCountry())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getNationality())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getPassPortFiles())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getCv())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getProfilPicture())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getCurrentLocation())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getDateOfBirth())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getEmail())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+            if (!empty($candidat->getAviability())) {
+               $pourcentageCompletion = $pourcentageCompletion + 1;
+             }
+
+            $nbrInput = 13;
+
+
+
+            $calcul = intval((($pourcentageCompletion/$nbrInput)*100));
+
+            $candidat->setCompletion($calcul);
+            $entityManager->persist($candidat);
+            $entityManager->flush();
+
+            // FIN DU CALCUL DE POURCENTAGE DE COMPLETION
+
         return $this->render('candidats/edit.html.twig', [
             'candidat' => $candidat,
             'form' => $form,
+            'calcul' => $calcul,
         ]);
     
   }

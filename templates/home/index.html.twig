@@ -3,6 +3,7 @@
 
 {% block body %}
 
+
 <div class="base">
 
     <!-- Page -->
@@ -227,7 +228,7 @@
                                 is allowing our recruitment expertise and personal guidance to bring the best out in you
                                 by choosing the most suited position.</p>
 
-                            <a href="/templates/auth/register.html"
+                            <a href="{{ path('app_register') }}"
                                 class="btn border secondary waves-effect waves-light mt-40">Join us</a>
                         </div>
                     </div>
@@ -264,7 +265,8 @@
 
                     {% for job in job_offer %}
 
-                        <div class="portfolio-item" data-groups='["all", "commercial"]'>
+
+                        <div class="portfolio-item" data-groups='["all", "{{ job.idJobType.type }}"]'>
                             <div class="portfolio-wrapper">
                                 <div class="card job-card">
                                     <div class="card-content">
@@ -288,12 +290,19 @@
                                     <div class="card-action">
                                         <a class="btn btn-md primary border waves-effect waves-dark"
                                             href="{{ path('app_job_offer_show', {'id': job.id}) }}">Details</a>
-                                         
-                                    <form action="{{ path('app_job_to_candidat_new') }}" method="post">
-                                        <button type="submit" class="btn btn-md primary waves-effect waves-light">Apply</button>
-                                        <input type="hidden" name="jobOffer_ID" value="{{ job.id }}" >
-                                    </form>
-
+                                    
+                                    {% if app.user %}
+                                    
+                                        {% if app.user.candidats.Completion == 100 %}
+                                            <form action="{{ path('app_job_to_candidat_new') }}" method="post">
+                                                <button type="submit" id="Apply" class="btn btn-md primary waves-effect waves-light">Apply</button>
+                                                <input type="hidden" name="jobOffer_ID" value="{{ job.id }}" >
+                                            </form>
+                                        {% else %}
+                                            <button type="submit" id="Apply" class="">Apply</button>
+                                        {% endif %}
+                                    
+                                    {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +315,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="/templates/jobs/index.html"
+                        <a href="{{ path('app_job_offer_index') }}"
                             class="btn gradient secondary waves-effect waves-light mt-30">View all job offers</a>
                     </div>
                 </div>

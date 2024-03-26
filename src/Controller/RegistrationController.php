@@ -33,12 +33,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // regarder comment on recuperer les info dans user abvec symphony
-            // faire un nouveu user a se moment pour le mettre dans notre objet candidats
-            // verifier que se soit bien dedans et mettre que l'id 
-
-            // $candidats->setUserId($user['id']);
-
             $entityManager->persist($user);
             $entityManager->flush();
 

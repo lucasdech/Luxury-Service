@@ -2,41 +2,6 @@
 
 {% block body %}
 
-{{ dump(form) }}
- 
- {# <pre>
-    {{ dump(form|length) }}
-
-    {{ dump(app.user.candidats) }}
-    
-{% for ligne in (app.user.candidats) %}
-    <pre>
-        {{ dump(ligne) }}
-    </pre>
-{% endfor %}
-#}
-
-
-    {% if (app.user) is not null %}
-            {{ dump(app.user.candidats) }}
-    {% endif %} 
-    
-
-    
-
-  
-
-                                {# {{ form_row(form.email) }} #}
-                                {# {{ form_row(form.aviability) }} #} 
-
-
-                                {# {{ form_row(form.description) }} #}
-
-
-                                {# {{ form_row(form.date_created) }} #}
-                                {# {{ form_row(form.date_updated) }} #}
-                                {# {{ form_row(form.date_delete) }} #}
-                                {# {{ form_row(form.file) }} #}
 
 <div class="base">
 
@@ -70,7 +35,7 @@
                             &nbsp; Hooray ! Your profile is complete.
                         </h4>
                         <div class="c100 p100 small complete ">
-                            <span>100%</span>
+                            <span>{{ calcul }}%</span>
                             <div class="slice">
                                 <div class="bar"></div>
                                 <div class="fill"></div>
@@ -119,21 +84,11 @@
                                 {{ form_row(form.current_location) }}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-8">
-                            <div class="input-field">
-                                {{ form_row(form.aviability) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="input-field">
-                                {{ form_row(form.description) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="input-field">
-                                {{ form_row(form.file) }}
-                            </div>
-                        </div>
+                         <div class="col-xs-12 col-sm-8">
+                                    <div class="input-field">
+                                        {{ form_row(form.aviability) }}
+                                    </div>
+                                </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -141,11 +96,11 @@
                                  style="margin-top: 32px;">
                                 <div class="btn btn-lg primary waves-effect waves-light">
                                     <span><i class="material-icons">insert_photo</i> Photo</span>
-                                    {{ form_row(form.profil_picture) }}
+                                        {{ form_row(form.profil_picture) }}
                                 </div>
 
                                 <div class="existing-file">
-                                    <a href="{{ path('app_candidats_pieces') }}" target="_blank"><i class="material-icons">&#xE24D;</i> profil_picture.jpg</a>
+                                    <a href="{{ path('app_candidats_pieces') }}" target="_blank"><i class="material-icons">&#xE24D;</i> profil_picture </a>
                                 </div>
                             </div>
                         </div>
@@ -186,10 +141,10 @@
                                         {{ form_row(form.passPort_files) }}
                                     </div>
                                     <div class="existing-file">
-                                        <img src="../../public/uploads/Passeport/{{ candidat.passPortfiles }}" target="_blank"><i class="material-icons">&#xE24D;</i>
+                                        <a href="{{ path('app_candidats_pieces') }}" target="_blank"><i class="material-icons">&#xE24D;</i> PassPort</a>
                                     </div>
                                     <div class="file-path-wrapper">
-                                        {{ form_row(form.is_passPort) }}
+                                        {{ form_row(form.is_passPort) }}    
                                     </div>
                                 </div>
 
@@ -199,12 +154,8 @@
                                         {{ form_row(form.cv) }}
                                     </div>
 
-{# <pre>
-    {{ dump(candidat.passPortfiles) }}
-</pre> #}
-
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload your Curriculum Vitae" readonly>
+                                    <div class="existing-file">
+                                        <a href="{{ path('app_candidats_pieces') }}" target="_blank"><i class="material-icons">&#xE24D;</i> profil_picture </a>
                                     </div>
                                 </div>
 
@@ -243,6 +194,36 @@
                 </div>
             </section>
 
+
+                    <pre>
+                        {{ dump(candidat) }}
+                    </pre>
+                    
+                    {% for role in app.user.roles %}
+                        
+                        {% if role == "ROLE_ADMIN"%}
+
+                        <section  class="section-padding">
+                            
+                            <div class="container">
+
+                                <h3>Partie admin</h3>
+
+                                 <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="input-field">
+                                        {{ form_row(form.description) }}
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </section>
+                        {% endif %}
+
+                    {% endfor %}
+
+            
+
             <section class="section-padding gray-bg">
                 <div class="container">
                     <div class="row">
@@ -275,7 +256,7 @@
                                 <span><strong>UPDATE</strong> NOW</span>
                             </button>
                         </div>
-                    </div>
+                    </div>                  
 
                 </div>
             </section>
@@ -285,11 +266,5 @@
     </div>
 
 </div>
-
-
-
-    <object data="../../public/uploads/CV/{{ candidat.cv }}" type="application/pdf" height="700"></object>
-
-
 
 {% endblock %}

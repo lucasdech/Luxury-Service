@@ -8,6 +8,10 @@ use App\Form\JobToCandidatType;
 use App\Repository\JobToCandidatRepository;
 use App\Repository\CandidatsRepository;
 use App\Repository\JobOfferRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Doctrine\ORM\Cache\TimestampQueryCacheValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,11 +34,18 @@ class JobToCandidatController extends AbstractController
     #[Route('/new', name: 'app_job_to_candidat_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, CandidatsRepository $candidatsRepository, JobOfferRepository $jobOfferRepository): Response
     {
-
+        
         $jobToCandidat = new JobToCandidat();
-        // $form = $this->createForm(JobToCandidatType::class, $jobToCandidat);
-        // $form->handleRequest($request);
 
+        // insertion de la date de postulation 
+
+        date_default_timezone_set('UTC');
+
+        $date = new DateTimeImmutable();
+
+        $date->format('Y-m-d');
+
+       
         // partie candidats id 
 
             $user = $this->getUser();
@@ -56,6 +67,10 @@ class JobToCandidatController extends AbstractController
 
             $jobToCandidat->setIdCandidat($candidatObject);
             $jobToCandidat->setIdJobOffer($jobOfferObject);
+            $jobToCandidat->setTime($date);
+            $jobToCandidat->setIsApproved(0);
+
+
 
             $entityManager->persist($jobToCandidat);
             $entityManager->flush();

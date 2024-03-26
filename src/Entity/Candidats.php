@@ -88,6 +88,9 @@ class Candidats
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user_id = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $Completion = null;
+
     public function __construct()
     {
         $this->jobToCandidats = new ArrayCollection();
@@ -407,5 +410,17 @@ class Candidats
     
 
     // }
+
+    public function getCompletion(): ?int
+    {
+        return $this->Completion;
+    }
+
+    public function setCompletion(?int $Completion): static
+    {
+        $this->Completion = $Completion;
+
+        return $this;
+    }
 
 }
