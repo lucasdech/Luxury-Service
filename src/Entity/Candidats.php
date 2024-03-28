@@ -21,10 +21,10 @@ class Candidats
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Gender = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $first_name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -51,7 +51,7 @@ class Candidats
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $current_location = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $date_of_birth = null;
 
     #[ORM\Column(length: 255, nullable: true)]
