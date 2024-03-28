@@ -55,7 +55,6 @@
 
                             {% if app.user %}
                             
-
                                 {% if app.user.candidats.Completion == 100 %}
                                             <form action="{{ path('app_job_to_candidat_new') }}" method="post">
                                                 <button type="submit" id="Apply" class="btn btn-md primary waves-effect waves-light">Apply</button>
@@ -65,12 +64,24 @@
                                             <button type="submit" id="Apply" class="">Apply</button>
                                 {% endif %}
 
-                            {% endif %}
+                                
+                
+                                {% for candidature in app.user.candidats.jobToCandidats %}        
+                                    {% if candidature.idJobOffer.id == job.id %}
+                                        <div class="btn btn-block btn-danger mt-30 waves-effect waves-light disabled" style="color: white;">You have already applied</div>
+                                    {% else %}
+                                        <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You can applied for this job</div>
+                                    {% endif %}
+                                
+                                {% endfor %}
 
-                            <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+
+                
+           
 
                 <nav class="single-post-navigation no-margin" role="navigation">
                     <div class="row">

@@ -26,8 +26,6 @@ class JobOfferController extends AbstractController
             $candidats_Id = $user->getCandidats()->getId();
         }
 
-
-
         return $this->render('job_offer/index.html.twig', [
             'job_offers' => $jobOfferRepository->findAll(),
         ]);
@@ -39,7 +37,7 @@ class JobOfferController extends AbstractController
         $jobOffer = new JobOffer();
         $form = $this->createForm(JobOfferType::class, $jobOffer);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($jobOffer);
             $entityManager->flush();
@@ -54,7 +52,7 @@ class JobOfferController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_job_offer_show', methods: ['GET'])]
-    public function show(JobOffer $jobOffer): Response
+    public function show(Request $request, JobOffer $jobOffer): Response
     {
         return $this->render('job_offer/show.html.twig', [
             'job' => $jobOffer,

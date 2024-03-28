@@ -173,15 +173,12 @@ class CandidatsController extends AbstractController
             if (!empty($candidat->getGender())) {
                $pourcentageCompletion = $pourcentageCompletion + 1;
              }
-
             if (!empty($candidat->getFirstName())) {
                $pourcentageCompletion = $pourcentageCompletion + 1;
              }
-
             if (!empty($candidat->getLastName())) {
                $pourcentageCompletion = $pourcentageCompletion + 1;
              }
-
             if (!empty($candidat->getAdress())) {
                $pourcentageCompletion = $pourcentageCompletion + 1;
              }

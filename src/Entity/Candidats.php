@@ -78,7 +78,7 @@ class Candidats
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
-    #[ORM\OneToMany(targetEntity: JobToCandidat::class, mappedBy: 'id_Candidat')]
+    #[ORM\OneToMany(targetEntity: JobToCandidat::class, mappedBy: 'id_Candidat', fetch: 'EAGER')]
     private Collection $jobToCandidats;
 
     #[ORM\ManyToOne(inversedBy: 'candidats')]
